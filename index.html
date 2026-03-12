@@ -52,7 +52,6 @@
             z-index: -2;
         }
 
-        /* Animated Grid Overlay */
         body::after {
             content: '';
             position: fixed;
@@ -66,7 +65,6 @@
             -webkit-mask-image: linear-gradient(to bottom, transparent 5%, black 50%, transparent 95%);
         }
 
-        /* --- FLOATING NEON HEADER --- */
         header {
             position: fixed;
             top: 25px;
@@ -101,26 +99,18 @@
             text-decoration: none;
         }
 
-        /* --- FLOATING & GLOWING LOGO --- */
         .logo-img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            /* Animation combined for floating up/down and pulsing neon glow */
             animation: floatAndGlow 3s ease-in-out infinite;
             border: 1px solid rgba(0, 242, 255, 0.3);
         }
 
         @keyframes floatAndGlow {
-            0%, 100% {
-                transform: translateY(0);
-                filter: drop-shadow(0 0 8px rgba(0, 242, 255, 0.5));
-            }
-            50% {
-                transform: translateY(-6px);
-                filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.9)) drop-shadow(0 0 30px rgba(0, 242, 255, 0.6));
-            }
+            0%, 100% { transform: translateY(0); filter: drop-shadow(0 0 8px rgba(0, 242, 255, 0.5)); }
+            50% { transform: translateY(-6px); filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.9)) drop-shadow(0 0 30px rgba(0, 242, 255, 0.6)); }
         }
 
         .logo-text {
@@ -181,22 +171,10 @@
             transition: 0.6s;
         }
 
-        .hire-btn:hover::after {
-            transform: rotate(45deg) translateY(100%);
-        }
+        .hire-btn:hover::after { transform: rotate(45deg) translateY(100%); }
+        .hire-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px var(--accent-glow); }
 
-        .hire-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px var(--accent-glow);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 180px 2rem 40px;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .hero { padding: 180px 2rem 40px; text-align: center; max-width: 800px; margin: 0 auto; }
 
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
@@ -217,18 +195,9 @@
             opacity: 0;
         }
 
-        /* --- PORTFOLIO GRID --- */
-        .wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px 2rem 100px;
-        }
+        .wrapper { max-width: 1400px; margin: 0 auto; padding: 20px 2rem 100px; }
 
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; }
 
         .asset-card {
             background: var(--surface);
@@ -246,7 +215,6 @@
             animation: fadeUp 0.8s ease forwards;
         }
 
-        /* Staggered animation delays for grid items */
         .asset-card:nth-child(1) { animation-delay: 0.1s; }
         .asset-card:nth-child(2) { animation-delay: 0.2s; }
         .asset-card:nth-child(3) { animation-delay: 0.3s; }
@@ -254,12 +222,8 @@
         .asset-card:nth-child(5) { animation-delay: 0.5s; }
         .asset-card:nth-child(6) { animation-delay: 0.6s; }
         .asset-card:nth-child(7) { animation-delay: 0.7s; }
-        .asset-card:nth-child(8) { animation-delay: 0.8s; }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         .asset-card::before {
             content: '';
@@ -272,155 +236,32 @@
             transition: opacity 0.3s;
         }
 
-        .asset-card:hover {
-            transform: translateY(-10px);
-            background: var(--surface-hover);
-            border-color: rgba(0, 242, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0, 242, 255, 0.05);
-        }
+        .asset-card:hover { transform: translateY(-10px); background: var(--surface-hover); border-color: rgba(0, 242, 255, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0, 242, 255, 0.05); }
+        .asset-card:hover::before { opacity: 1; }
 
-        .asset-card:hover::before {
-            opacity: 1;
-        }
+        .img-container { width: 100%; height: 220px; border-radius: 16px; overflow: hidden; margin-bottom: 1.2rem; position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.05); }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); filter: brightness(0.85) contrast(1.1); }
+        .asset-card:hover .img-container img { transform: scale(1.08); filter: brightness(1.1) contrast(1.1); }
 
-        .img-container {
-            width: 100%;
-            height: 220px;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 1.2rem;
-            position: relative;
-            z-index: 1;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+        .card-content { display: flex; flex-direction: column; flex-grow: 1; z-index: 1; }
+        .tags { display: flex; gap: 8px; margin-bottom: 12px; }
+        .tag { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 30px; background: rgba(0, 242, 255, 0.1); color: var(--accent); border: 1px solid rgba(0, 242, 255, 0.2); }
 
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: brightness(0.85) contrast(1.1);
-        }
+        .asset-card h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
+        .asset-card p { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        .asset-card:hover .img-container img {
-            transform: scale(1.08);
-            filter: brightness(1.1) contrast(1.1);
-        }
+        .card-btn { margin-top: auto; border: 1px solid var(--border-color); background: rgba(255,255,255,0.02); color: #fff; border-radius: 12px; padding: 12px; text-align: center; text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: var(--transition); display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .asset-card:hover .card-btn { background: var(--accent); border-color: var(--accent); color: #000; box-shadow: 0 0 15px rgba(0, 242, 255, 0.3); }
+        .asset-card:hover .card-btn i { transform: translateX(4px) rotate(-45deg); }
 
-        .card-content {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            z-index: 1;
-        }
+        footer { padding: 40px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 40px; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); }
+        footer p { color: var(--text-dim); font-size: 0.9rem; letter-spacing: 1px; }
+        footer span { color: var(--accent); font-weight: 600; }
 
-        .tags {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .tag {
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 4px 10px;
-            border-radius: 30px;
-            background: rgba(0, 242, 255, 0.1);
-            color: var(--accent);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-        }
-
-        .asset-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .asset-card p {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            margin-bottom: 20px;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .card-btn {
-            margin-top: auto;
-            border: 1px solid var(--border-color);
-            background: rgba(255,255,255,0.02);
-            color: #fff;
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: var(--transition);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .card-btn i {
-            font-size: 0.9rem;
-            transition: transform 0.3s;
-        }
-
-        .asset-card:hover .card-btn {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
-        }
-
-        .asset-card:hover .card-btn i {
-            transform: translateX(4px) rotate(-45deg);
-        }
-
-        footer {
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        footer p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        footer span {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            header {
-                width: 95%;
-                padding: 0 1rem;
-            }
-            .logo-text {
-                display: none; 
-            }
-            .wrapper {
-                padding: 20px 1rem 80px;
-            }
-            .hero {
-                padding: 140px 1rem 20px;
-            }
+            header { width: 95%; padding: 0 1rem; }
+            .logo-text { display: none; }
+            .hero { padding: 140px 1rem 20px; }
         }
     </style>
 </head>
@@ -428,7 +269,6 @@
 
     <header>
         <a href="#" class="logo-group">
-            <!-- Updated Logo with Imgur Link and Float/Glow Animation -->
             <img src="https://i.imgur.com/WjwmZnT.png" alt="DIP" class="logo-img">
             <span class="logo-text">PROJECT:ALPHA</span>
         </a>
@@ -437,7 +277,7 @@
             <a href="https://diptarafd3t-cell.github.io/Dip-Tarafder-officials/" target="_blank">
                 <img src="https://i.imgur.com/wJ5QJIC.png" alt="Profile" class="profile-icon">
             </a>
-            <a href="https://diptarafd3t-cell.github.io/Contact-me-Dip/" class="hire-btn">Hire Me</a>
+            <a href="https://store69web.github.io/need.me/" class="hire-btn">Hire Me</a>
         </div>
     </header>
 
@@ -448,8 +288,6 @@
 
     <div class="wrapper">
         <div class="portfolio-grid">
-            
-            <!-- Unique Item 1 -->
             <article class="asset-card">
                 <div class="img-container"><img src="https://i.imgur.com/nub5f48.png" alt="Alpha Core"></div>
                 <div class="card-content">
@@ -460,7 +298,6 @@
                 </div>
             </article>
 
-            <!-- Unique Item 2 -->
             <article class="asset-card">
                 <div class="img-container"><img src="https://i.imgur.com/SfqRRs3.png" alt="Interface Node"></div>
                 <div class="card-content">
@@ -471,7 +308,6 @@
                 </div>
             </article>
 
-            <!-- Unique Item 3 -->
             <article class="asset-card">
                 <div class="img-container"><img src="https://i.imgur.com/k7g8RKm.png" alt="Visual Matrix"></div>
                 <div class="card-content">
@@ -482,7 +318,6 @@
                 </div>
             </article>
 
-            <!-- Unique Item 4 -->
             <article class="asset-card">
                 <div class="img-container"><img src="https://i.imgur.com/Km2Ti3L.png" alt="Data Stream"></div>
                 <div class="card-content">
@@ -493,7 +328,6 @@
                 </div>
             </article>
 
-            <!-- Unique Item 5 -->
             <article class="asset-card">
                 <div class="img-container"><img src="https://i.imgur.com/e9jidB1.png" alt="Neural Grid"></div>
                 <div class="card-content">
@@ -504,7 +338,6 @@
                 </div>
             </article>
 
-            <!-- Unique Item 6 -->
             <article class="asset-card">
                 <div class="img-container"><img src="https://i.imgur.com/tXzTy07.png" alt="Cyber Logic"></div>
                 <div class="card-content">
@@ -515,7 +348,6 @@
                 </div>
             </article>
 
-            <!-- Unique Item 7 -->
             <article class="asset-card">
                 <div class="img-container"><img src="https://i.imgur.com/4bNeDe0.png" alt="Alpha Prime"></div>
                 <div class="card-content">
@@ -525,7 +357,6 @@
                     <a href="mailto:diptarafd3t@gmail.com" class="card-btn">Initialize <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
-
         </div>
     </div>
 
@@ -533,7 +364,6 @@
         <p>&copy; 2026 PROJECT:ALPHA | Engineered by <span>DIP</span>. All systems operational.</p>
     </footer>
 
-    <!-- Mouse-tracking glow effect on cards -->
     <script>
         document.querySelectorAll('.asset-card').forEach(card => {
             card.addEventListener('mousemove', e => {
@@ -546,4 +376,4 @@
         });
     </script>
 </body>
-</html>
+                                               </html>
